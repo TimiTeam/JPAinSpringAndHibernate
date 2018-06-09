@@ -28,12 +28,14 @@ public class ContactServiceImpl implements ContactService{
     return list;
     }
 
+    @Transactional(readOnly = true)
     public List<Contact> finaAllWithDetail() {
-        return null;
+        return em.createNamedQuery("Contact.findAllWithDetail",Contact.class).getResultList();
     }
 
+    @Transactional(readOnly = true)
     public Contact findById(Long id) {
-        return null;
+        return em.createNamedQuery("Contact.findById",Contact.class).setParameter("id",id).getSingleResult();
     }
 
     public Contact save(Contact contact) {
