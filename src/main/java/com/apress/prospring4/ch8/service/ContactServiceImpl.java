@@ -52,6 +52,7 @@ public class ContactServiceImpl implements ContactService{
     }
 
     public void delete(Contact contact) {
-
+        em.remove(em.merge(contact));
+        LOG.info("Contact with id: "+contact.getId()+" was delete");
     }
 }
