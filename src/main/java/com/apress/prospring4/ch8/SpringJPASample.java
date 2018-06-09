@@ -7,7 +7,6 @@ import com.apress.prospring4.ch8.components.ContactTelDetail;
 import com.apress.prospring4.ch8.components.Hobby;
 import com.apress.prospring4.ch8.service.ContactService;
 import com.apress.prospring4.ch8.service.ContactSummaryService;
-import com.apress.prospring4.ch8.service.ContactSummaryUntypeImpl;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,10 +21,18 @@ public class SpringJPASample {
 
         ContactSummaryService summaryUntype = context.getBean("contactSummaryUntype", ContactSummaryService.class);
         List<ContactSummary> list = summaryUntype.findAll();
-        for (ContactSummary c: list){
-            LOGGER.info(c);
-        }
+//        for (ContactSummary c: list){
+//            LOGGER.info(c);
+//        }
 
+        ContactService service = context.getBean("jpaContactService",ContactService.class);
+
+        Contact contact = new Contact("Maria","Trokaz","1995-09-11");
+        contact.addContactTelDetail(new ContactTelDetail("Home","5715321"));
+        contact.addContactTelDetail(new ContactTelDetail("Mobile","0505124375"));
+        service.save(contact);
+
+        listWithDetail(service.finaAllWithDetail());
 
 //        listAll(service.findAll());
 

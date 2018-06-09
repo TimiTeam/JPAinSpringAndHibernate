@@ -39,7 +39,16 @@ public class ContactServiceImpl implements ContactService{
     }
 
     public Contact save(Contact contact) {
-        return null;
+        if(contact.getId() == null){
+            LOG.info("Insert a new contact ");
+            em.persist(contact);
+        }else {
+            em.persist(contact);
+            LOG.info("Update exist contact");
+        }
+        LOG.info("Saved object with id "+contact.getId());
+
+        return contact;
     }
 
     public void delete(Contact contact) {
