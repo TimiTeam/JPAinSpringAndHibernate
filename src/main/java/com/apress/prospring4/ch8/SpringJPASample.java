@@ -5,6 +5,7 @@ import com.apress.prospring4.ch8.components.Contact;
 import com.apress.prospring4.ch8.components.ContactTelDetail;
 import com.apress.prospring4.ch8.components.Hobby;
 import com.apress.prospring4.ch8.service.ContactService;
+import com.apress.prospring4.ch8.service.ContactSummaryUntypeImpl;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -17,13 +18,14 @@ public class SpringJPASample {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("app-context-annotation.xml");
 
-        ContactService service = context.getBean("jpaContactService",ContactService.class);
+        ContactSummaryUntypeImpl summaryUntype = context.getBean("contactSummaryUntype", ContactSummaryUntypeImpl.class);
+
+        summaryUntype.displayAllContactSummary();
 
 //        listAll(service.findAll());
 
 //        listWithDetail(service.finaAllWithDetail());
 
-        LOGGER.info(service.findById(7L));
 
     }
     private static void listAll(List<Contact> contacts){
