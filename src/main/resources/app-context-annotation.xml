@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+       <import resource="datasource-timur_base.xml"/>
+
+       <!-- The Entity Manager factory require a transaction manager for transaction data access -->
+       <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+             p:entityManagerFactory-ref="em"/>
+
+       <context:component-scan base-package="com.apress.prospring4.ch8"/>
+
+       <tx:annotation-driven transaction-manager="transactionManager"/>
+       <!-- It is designed to support the announcement
+       of the requirements for setting transaction boundaries using annotations-->
+
+       <bean id="em" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+              <property name="dataSource" ref="dataSource"/>
+              <property name="jpaVendorAdapter">
+                     <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+              </property>
+              <property name="packagesToScan" value="com.apress.prospring4.ch8"/>
+              <property name="jpaProperties">
+                     <props>
+                            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                            <prop key="hibernate.max_fetch_depth">3</prop>
+                            <prop key="hibernate.jdbc.fetch_size">50</prop>
+                            <prop key="hibernate.jdbc.batch_size">10</prop>
+                            <prop key="hibernate.show_sql">true</prop>
+                     </props>
+              </property>
+       </bean>
+
+
+</beans>
