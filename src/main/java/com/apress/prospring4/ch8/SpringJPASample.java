@@ -27,10 +27,8 @@ public class SpringJPASample {
 
         ContactService service = context.getBean("jpaContactService",ContactService.class);
 
-        Contact contact = new Contact("Maria","Trokaz","1995-09-11");
-        contact.addContactTelDetail(new ContactTelDetail("Home","5715321"));
-        contact.addContactTelDetail(new ContactTelDetail("Mobile","0505124375"));
-        service.save(contact);
+        
+       service.save(service.findById(6L));
 
         listWithDetail(service.finaAllWithDetail());
 

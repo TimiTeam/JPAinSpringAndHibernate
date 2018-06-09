@@ -43,7 +43,7 @@ public class ContactServiceImpl implements ContactService{
             LOG.info("Insert a new contact ");
             em.persist(contact);
         }else {
-            em.persist(contact);
+            em.merge(contact);
             LOG.info("Update exist contact");
         }
         LOG.info("Saved object with id "+contact.getId());
