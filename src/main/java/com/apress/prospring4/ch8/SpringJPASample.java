@@ -28,14 +28,7 @@ public class SpringJPASample {
         ContactService service = context.getBean("jpaContactService",ContactService.class);
 
 
-        service.save(new Contact("Ivan,","Ivanov","554"));
-
-        listWithDetail(service.finaAllWithDetail());
-
-
-        service.delete(service.findById(19L));
-
-        listWithDetail(service.finaAllWithDetail());
+        listAll(service.findAllByNativeQuery());
 
 //        listAll(service.findAll());
 
