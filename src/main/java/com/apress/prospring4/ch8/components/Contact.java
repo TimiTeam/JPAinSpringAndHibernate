@@ -21,6 +21,9 @@ import java.util.Set;
                 query = "select distinct c from Contact c left join fetch c.contactTelDetailSet t " +
                         "left join fetch c.hobbies h")
 })
+@SqlResultSetMapping(name = "contactResult",
+entities =@EntityResult(entityClass = Contact.class))
+//  Displaying the result set of SQL
 public class Contact {
     private Long id;
     private int version;
