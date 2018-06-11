@@ -2,6 +2,7 @@ package com.apress.prospring4.ch8.service;
 
 
 import com.apress.prospring4.ch8.components.ContactSummary;
+import com.apress.prospring4.ch8.service.interfaces.ContactSummaryService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import java.util.List;
 @Service("contactSummaryUntype")
 @Repository
 @Transactional
-public class ContactSummaryUntypeImpl implements ContactSummaryService{
+public class ContactSummaryUntypeImpl implements ContactSummaryService {
 
     private static final Logger LOG = Logger.getLogger(ContactSummaryUntypeImpl.class);
 

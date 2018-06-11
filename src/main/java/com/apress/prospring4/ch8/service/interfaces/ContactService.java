@@ -1,4 +1,4 @@
-package com.apress.prospring4.ch8.service;
+package com.apress.prospring4.ch8.service.interfaces;
 
 import com.apress.prospring4.ch8.components.Contact;
 
@@ -17,4 +17,7 @@ public interface ContactService {
     void delete(Contact contact);
 
     List<Contact> findAllByNativeQuery();
+
+    List<Contact> findByCriteriaQuery(String firstName,String lastName);
+
 }

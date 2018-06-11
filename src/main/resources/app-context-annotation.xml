@@ -3,13 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd">
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
        <import resource="datasource-timur_base.xml"/>
 
@@ -40,5 +42,11 @@
               </property>
        </bean>
 
+       <jpa:repositories base-package="com.apress.prospring4.ch8"
+                         entity-manager-factory-ref="em"
+                         transaction-manager-ref="transactionManager"/>
+       <!-- configures the Repository abstraction from the Spring Date JRA.
+       We tell Spring to need to scan the package for the repository interfaces,
+       as well as the transfer of the EntityManagerFactory and the Transaction Manager-->
 
 </beans>

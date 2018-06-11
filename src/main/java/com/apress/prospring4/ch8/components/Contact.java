@@ -2,6 +2,7 @@ package com.apress.prospring4.ch8.components;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,7 +25,7 @@ import java.util.Set;
 @SqlResultSetMapping(name = "contactResult",
 entities =@EntityResult(entityClass = Contact.class))
 //  Displaying the result set of SQL
-public class Contact {
+public class Contact implements Serializable {
     private Long id;
     private int version;
     private String firstName;
